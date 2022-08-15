@@ -1,0 +1,153 @@
+/* Dashboard Navigation */
+#nav {
+  display: block;
+  background: #FAFAFA;
+  border-bottom: 1px solid #eee;
+  padding: 8px;
+  position: relative;
+  font-size: 12px;
+  
+  a {
+    display: inline-block;
+    vertical-align: middle;
+  }
+  
+  .logo {
+    background: url(/img/logo.png) no-repeat center;
+    background-size: 40px;
+    display: inline-block;
+    width: 40px;
+    height: 24px;
+    vertical-align: middle;
+    margin: 0 8px 0 0;
+    opacity: .5;
+    
+    &:hover {
+      opacity: 1;
+    }
+  }
+  
+  
+  /* Folders */
+  
+  #folders {
+    & > a, & > span {
+      margin-left: 4px;
+      font-weight: bold;
+      position: relative;
+      display: inline-block;
+      vertical-align: middle;
+      border: 1px solid transparent;
+      padding: 4px;
+      
+      &.dragover {
+        border: 1px dashed #FF851B;
+        background: #eee;
+      }
+      
+      &.on {
+        overflow: hidden;
+        background: #fff;
+        border-color: #eee;
+        border-radius: 6px;
+        
+        & > span {
+          visibility: hidden;
+        }
+        
+        input {
+          left: 0;
+          top: 0;
+          position: absolute;
+          background: #fff;
+          border: none;
+          outline: none;
+          padding: 4px;
+          font-family: "Roboto Mono";
+          font-weight: bold;
+          font-size: 12px;
+        }
+      }
+    }
+  }
+  
+  
+  /* Actions */
+  
+  button {
+    background: none;
+    border: none;
+    padding: none;
+    vertical-align: middle;
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    margin: 0 8px 0 0;
+    opacity: .5;
+    
+    &:hover {
+      opacity: 1;
+    }
+  }
+  
+  .search {
+    background: url(/img/search.png) no-repeat center;
+    background-size: 16px;
+  }
+  
+  .add-folder {
+    background: url(/img/add-folder.png) no-repeat center;
+    background-size: 16px;
+  }
+  
+  .exit {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 10px;
+  }
+}
+
+
+/* Metrics names */
+ol.metrics-list {
+  list-style: none;
+  padding: 0;
+  margin: 8px;
+  text-align: center;
+  
+  li {
+    display: inline-block;
+    margin: 0 10px;
+    font-size: 12px;
+    
+    &.dragging {
+      background: #FF851B;
+      color: #fff;
+    }
+    
+    &.on {
+      a {
+        pointer-events: none;
+        text-decoration: none;
+        color: #ccc;
+      }
+      
+      b {
+        display: none;
+      }
+    }
+    
+    a {
+      color: #0074D9;
+      
+      &:hover {
+        color: #001f3f;
+      }
+    }
+    
+    b {
+      padding: 0 0 0 10px;
+    }
+  }
+}
