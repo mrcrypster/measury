@@ -11,6 +11,12 @@ class metrics {
     ]) ?: [];
   }
   
+  public static function all($user_id = null) {
+    return mysqly::array('SELECT metric total FROM metrics WHERE user_id = :id', [
+      ':id' => $user_id ?: user::id()
+    ]);
+  }
+  
   public static function total($user_id = null) {
     return mysqly::fetch('SELECT count(*) total FROM metrics WHERE user_id = :id', [
       ':id' => $user_id ?: user::id()

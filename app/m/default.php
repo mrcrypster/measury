@@ -2,6 +2,10 @@
 
 $metric = $_GET['m'] ? mysqly::metrics_(['user_id' => user::id(), 'metric' => $_GET['m']]) : null;
 
+if ( $metric['folder_id'] && ($metric['folder_id'] != $_GET['f']) )  {
+  redirect('/m?m=' . $metric['metric'] . '&f=' . $metric['folder_id']);
+}
+
 if ( $metric && $_GET['drop'] ) {
   $k = user::data()['pk'];
   redis("DEL {$k}/{$metric['metric']}");
@@ -46,7 +50,10 @@ return [
     ]
   ] : [
     [
-      'input#search::Search metrics' => ''
+      'input#search::Search metrics' => [':list' => 'my-metrics'],
+      'datalist' => [array_map(function($m) {
+        return ['option' => $m];
+      }, metrics::all()), ':id' => 'my-metrics']
     ],
     
     [
