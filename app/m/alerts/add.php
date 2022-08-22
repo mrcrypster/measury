@@ -1,7 +1,7 @@
 <?php
 
 if ( $_POST['query'] && $_POST['value'] ) {
-  mysqly::insert('rules', [
+  mysqly::insert_update('rules', [
     'user_id' => user::id(),
     'query' => $_POST['query'],
     'aggregation' => $_POST['aggregation'],
@@ -12,4 +12,4 @@ if ( $_POST['query'] && $_POST['value'] ) {
   ]);
 }
 
-return ['#rules' => phpy('/m/alerts/list')];
+phpy::pub('rule-aded');

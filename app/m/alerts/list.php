@@ -5,10 +5,10 @@
         ['td' => ['button:/m/alerts/drop' => ['', ':data' => ['id' => $row['id']]]]],
         ['td' => ['span' => 'if']],
         ['td.v' => [
-          'span' => [$row['aggregation'], ' ( ', e($row['query']), ' )']
-          #'ul' => array_map(function($a) {
-          #  return ['li' => ['a:/m?m=' . $a['metric'] => e($a['metric'])]];
-          #}, mysqly::fetch('alerts', ['rule_id' => $row['id']]))
+          'span' => [$row['aggregation'], ' ( ', e($row['query']), ' )'],
+          'ul' => array_map(function($a) {
+            return ['li' => ['a:/m?m=' . $a['metric'] => e($a['metric'])]];
+          }, mysqly::fetch('alerts', ['rule_id' => $row['id']]))
         ]],
         ['td' => ['span' => 'for the last']],
         ['td.v' => ['span' => [ $row['period'], ' ', $row['period_type']]]],

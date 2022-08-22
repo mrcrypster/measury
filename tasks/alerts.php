@@ -19,9 +19,9 @@ while ( true ) {
       case 'equal': $bad = $val == $r['value']; break;
     }
     
+    $alert = [ 'rule_id' => $r['id'], 'metric' => $metric ];
+    
     if ( $bad ) {
-      $alert = [ 'rule_id' => $r['id'], 'metric' => $metric ];
-      
       if ( !mysqly::fetch('alerts', $alert) ) {
         echo 'New alert -> ' . $metric . ': ' . $val . "\n";
         
@@ -30,14 +30,14 @@ while ( true ) {
                 $r['operation'] . ' than ' . $r['value'] . "\n" .
                 'https://measury.io/m?m=' . $metric;
                 
-        email($email, 'Please check [' . $metric . '] metric', $body);
+        email(mysqly::users_email($r['user_id']), 'Alert for [' . $metric . '] metric', $body);
         mysqly::insert('alerts', $alert);
       }
     }
     else {
-      #if ( mysqly::fetch('alerts', $alert) ) {
-      #  mysqly::remove('alerts', $alert);
-      #}
+      if ( mysqly::fetch('alerts', $alert) ) {
+        mysqly::remove('alerts', $alert);
+      }
     }
   }
   

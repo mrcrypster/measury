@@ -4,5 +4,4 @@ $metric = $_GET['m'] ? mysqly::metrics_(['user_id' => user::id(), 'metric' => $_
 
 return [
   '#nav' => phpy('m/nav')
-  
 ];

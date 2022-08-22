@@ -98,17 +98,28 @@ ul.timeseries {
     text-align: center;
     font-size: 12px;
     
-    a {
+    a, button {
+      border: none;
+      padding: 0;
       position: absolute;
       left: 0;
       top: -32px;
-      background: #fff url(/img/warning-ok.png) no-repeat center;
+      background: #fff url(/img/warning-off.png) no-repeat center;
       background-size: 20px 20px;
       text-indent: -9999px;
       overflow: hidden;
       width: 32px;
       height: 32px;
       opacity: .75;
+      
+      &.checked {
+        background-image: url(/img/warning-ok.png);
+      }
+      
+      &.raised {
+        background-image: url(/img/warning-on.png);
+        opacity: 1;
+      }
       
       &:hover {
         opacity: 1;
@@ -173,7 +184,7 @@ ul.timeseries {
 @media only screen and (max-width: 900px) {
   #charts {
     #tools {
-      a {
+      a, button {
         left: 50%;
         right: auto;
         margin-left: -16px;

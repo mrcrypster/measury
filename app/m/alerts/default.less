@@ -1,34 +1,63 @@
-#add-rule {
-  max-width: 1000px;
-  margin: 32px auto;
+#check {
+  display: none;
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0,0,0,0.25);
+  font-weight: 100;
+  text-align: center;
+  margin: 0;
+  padding: 32px;
+  box-sizing: border-box;
   
-  span {
-    font-size: 16px;
-    font-weight: 100;
-    color: #aaa;
+  form {
+    box-shadow: 0 0 25px #ccc;
+    border-radius: 16px;
+    padding: 32px;
+    background: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .query {
+    font-weight: bold;
+    color: #2ECC40
+  }
+  
+  &.on {
+    display: block;
   }
   
   select, input {
-    width: 80px;
-    margin: 0 8px;
+    width: 150px;
+    margin: 16px;
     text-align: center;
     
-    &[name=query] {
-      width: 200px;
-      margin: 0 2px;
-    }
-    
     &[name=period] {
-      width: 60px;
+      width: 90px;
     }
     
     &[name=period_type] {
       width: 120px;
     }
+    
+    &[name=value] {
+      width: 90px;
+    }
+  }
+  
+  .is, .then, .period {
+    display: block;
+    margin: 16px auto;
   }
   
   button {
-    margin-left: 16px;
+    margin: 16px;
   }
 }
 
@@ -103,10 +132,13 @@
       padding: 0;
       
       li {
-        background: url(/img/danger.png) no-repeat left center;
-        background-size: 16px;
-        padding-left: 24px;
         font-size: 10px;
+        a {
+          display: inline-block;
+          background: url(/img/warning-on.png) no-repeat left center;
+          background-size: 16px;
+          padding-left: 24px;
+        }
       }
     }
   }

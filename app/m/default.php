@@ -23,6 +23,12 @@ phpy::pub('redata', [
 
 $metrics = metrics::find(null, $_GET);
 $rules = mysqly::fetch('rules', ['user_id' => user::id()]);
+if ( $metric ) {
+  $check = mysqly::fetch('rules', ['user_id' => user::id(), 'query' => $metric['metric']])[0];
+  if ( $check ) {
+    $alert = mysqly::fetch('alerts', ['rule_id' => $check['id'], 'metric' => $metric['metric']])[0];
+  }
+}
 
 return [
   '#nav' => phpy('m/nav'),
@@ -32,7 +38,7 @@ return [
     'div#charts' => [
       '#tools' => [
         'a.remove:' . url(['drop' => 1]) => 'drop',
-        'a.alerts:/m/alerts?m=' . $metric['metric'] => 'alerts'
+        'button.alerts' . ($check ? '.checked' : '') . ($alert ? '.raised' : '') . ':setup_check()' => 'alerts'
       ],
 
       'div#day' => [
@@ -47,7 +53,9 @@ return [
         //['h2#m12' => ['12 months']],
         //'ul.timeseries#months' => phpy('/m/chart', ['metric' => $metric, 'period' => '12m']),
       ]
-    ]
+    ],
+    
+    '#check' => phpy('/m/alerts/form', ['metric' => $metric, 'check' => $check])
   ] : [
     [
       'input#search::Search metrics' => [':list' => 'my-metrics'],
