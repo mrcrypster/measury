@@ -4,13 +4,13 @@ ul.timeseries {
   padding: 0;
   list-style: none;
   
-  li:first-child b {
+  li:first-child i {
     animation: blinker 1s ease infinite;
     color: #FF851B;
   }
   
   li {
-    font-size: 10px;
+    font-size: 14px;
     margin: 0 0 12px 0;
     position: relative;
     
@@ -40,7 +40,7 @@ ul.timeseries {
     i {
       margin-left: 8px;
     }
-    
+
     em {
       width: 50px;
       text-align: center;
@@ -51,6 +51,11 @@ ul.timeseries {
       font-weight: 100;
       border-radius: 4px;
       font-size: 9px;
+      font-size: 10px;
+      border-sizing: border-box;
+      padding: 4px;
+      width: 35px;
+      border-radius: 6px; 
     }
     
     b {
@@ -58,12 +63,13 @@ ul.timeseries {
       display: inline-block;
       vertical-align: middle;
       letter-spacing: 1px;
-      color: #ccc;
+      border-top: 2px dotted #ddd;
     }
     
     &:hover {
       i {
         color: #222;
+        font-size: 1.25em;
       }
       
       em {
@@ -73,7 +79,7 @@ ul.timeseries {
       }
       
       b {
-        color: #444;
+        border-color: #444;
       }
     }
   }
@@ -84,18 +90,49 @@ ul.timeseries {
 #charts {
   max-width: 1000px;
   margin: 0 auto;
+  padding-top: 32px;
   
-  h1 {
-    font-weight: 100;
+  #tools {
+    position: relative;
+    display: block;
     text-align: center;
-    margin: 64px auto;
-    font-size: 64px;
+    font-size: 12px;
+    
+    a {
+      position: absolute;
+      left: 0;
+      top: -32px;
+      background: #fff url(/img/warning-ok.png) no-repeat center;
+      background-size: 20px 20px;
+      text-indent: -9999px;
+      overflow: hidden;
+      width: 32px;
+      height: 32px;
+      opacity: .75;
+      
+      &:hover {
+        opacity: 1;
+      }
+    }
+    
+    a.remove {
+      color: #FF4136;
+      right: 0;
+      left: auto;
+      background-image: url(/img/drop.png);
+      
+      &:hover {
+        background-image: url(/img/drop-on.png);
+      }
+    }
   }
-  
+
   h2 {
-    margin: 0 0 20px 0;
+    margin: 0 0 32px 0;
     line-height: 1em;
+    font-size: 40px;
     color: #888;
+    font-weight: 100;
     
     b {
       margin: 0 0 0 40px;
@@ -105,35 +142,18 @@ ul.timeseries {
   
   #day {
     float: right;
-    width: 66%;
-    
-    h2 {
-      font-size: 64px;
-      font-weight: normal;
-      margin-bottom: 10px;
-    }
-    
-    ul.timeseries li {
-      font-size: 14px;
-      
-      em {
-        font-size: 10px;
-        border-sizing: border-box;
-        padding: 4px;
-        width: 35px;
-        border-radius: 6px;
-      }
-    }
+    width: 50%;
+    padding-left: 16px;
+    box-sizing: border-box;
   }
   
   #history {
     float: left;
-    width: 34%;
+    width: 50%;
     text-align: right;
-    padding-right: 20px;
+    padding-right: 16px;
     box-sizing: border-box;
-    padding-top: 30px;
-    
+
     li {
       &:after {
         left: auto;
@@ -145,28 +165,28 @@ ul.timeseries {
       i, b {
         margin: 0 8px 0 0;
       }
-      
-      margin: 0 0 15px 0;
-    }
-    
-    h2 {
-      font-size: 32px;
-      font-weight: normal;
-      
-      &#m12 {
-        margin-top: 22px;
-      }
     }
   }
 }
 
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 900px) {
   #charts {
-    h1 {
-      font-size: 24px;
-      margin: 16px auto;
+    #tools {
+      a {
+        left: 50%;
+        right: auto;
+        margin-left: -16px;
+        
+        &.remove {
+          left: 50%;
+          right: auto;
+          margin-left: 16px;
+        }
+      }
     }
+
+
     
     .timeseries {
       li {

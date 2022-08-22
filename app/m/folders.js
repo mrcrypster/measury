@@ -2,6 +2,7 @@
 qs('#folders input[type=text]', function(el) {
   if ( el.value == 'New Folder' ) {
     el.focus();
+    el.select();
   }
 });
 
@@ -9,6 +10,12 @@ qs('#folders input[type=text]', function(el) {
 // New folder
 function new_folder() {
   phpy('/m/folder');
+}
+
+
+// List folders (used on mobile only)
+function show_folders() {
+  qs("#folders")[0].classList.add('on');
 }
 
 

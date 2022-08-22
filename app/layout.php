@@ -9,15 +9,17 @@
                
     'div#content.c' . str_replace('/', '-', phpy::endpoint()) => phpy(),
     
-    'div#foot' => [
-      'a:/' => 'Measury.io home',
-      'a:/contact' => 'Contact',
-      'a:/privacy' => 'Privacy policy',
-      'a:/terms' => 'Terms of Use',
-      ['a' => ['Contribute on Github', ':href' => 'https://github.com/mrcrypster/measury', ':target' => '_blank']],
-      ['a' => ['Building data-intensive apps', ':href' => 'https://medium.com/datadenys', ':target' => '_blank']]
-    ],
-    
-    'style' => '#foot a[href="' . e(phpy::endpoint()) . '"] { pointer-events: none; color: #000; text-decoration: none; }'
+    strpos(phpy::endpoint(), '/m') !== 0 ? [
+      'div#foot' => [
+        'a:/' => 'Measury.io home',
+        'a:/contact' => 'Contact',
+        'a:/privacy' => 'Privacy policy',
+        'a:/terms' => 'Terms of Use',
+        ['a' => ['Contribute on Github', ':href' => 'https://github.com/mrcrypster/measury', ':target' => '_blank']],
+        ['a' => ['Building data-intensive apps', ':href' => 'https://medium.com/datadenys', ':target' => '_blank']]
+      ],
+      
+      'style' => '#foot a[href="' . e(phpy::endpoint()) . '"] { pointer-events: none; color: #000; text-decoration: none; }'
+    ] : []
   ]
 ];

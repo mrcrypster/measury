@@ -9,6 +9,12 @@ on('.metrics-list li', 'dragend', function() {
   this.classList.remove('dragging');
 });
 
+on('.metrics-list li.on a', 'click', function(e) {
+  qs('.metrics-list')[0].classList.add('on');
+  e.stopPropagation();
+  e.preventDefault();
+});
+
 on('#folders > a', 'dragover', function(e) {
   e.preventDefault();
   this.classList.add('dragover');

@@ -12,7 +12,7 @@ class dates {
   }
   
   public static function date_by_period($period) {
-    if ( $period == '14d' ) return 'm/d';
+    if ( $period == '24d' ) return 'm/d';
     if ( $period == '12m' ) return 'M `y';
     else return 'H:00';
   }

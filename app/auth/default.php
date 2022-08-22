@@ -36,16 +36,20 @@ else if ( $email = $_POST['email'] ) {
   $ac = mt_rand(1000000, 9999999);
   mysqly::update('users', $u['id'] ?: $id, ['ac' => $ac]);
   
+  $body = 'Follow this link to sign in to your Measury dashboard:' . "\n" .
+          'https://measury.io/auth?ac=' . $ac;
+           
+  email($email, 'Your Measury.io auth link', $body);
+  
   $domain = explode('@', $email)[1];
   return [
-    '#title' => 'Now check your email to enter your dashboard',
     '#auth' => [
+      'Check your email to continue, ',
       'a' => [
         ':href' => 'http://' . $domain,
         ':target' => '_blank',
-        'Open ' . $domain
+        'open ' . $domain
       ],
-      ' ', $ac
     ]
   ];
   exit;

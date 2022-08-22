@@ -8,8 +8,8 @@
           ':data' => ['metric' => $m]
         ],
         
-        'b' => v(metrics::val($m))
+        # 'b' => v(metrics::val($m))
       ]
     ];
-  }, metrics::find(null, $_GET))
+  }, $metrics)
 ];

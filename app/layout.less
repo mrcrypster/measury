@@ -79,35 +79,46 @@ a {
   }
 }
 
+textarea, input[type=text], select {
+  font-family: "Roboto Mono";
+  font-size: 14px;
+  background: #FAFAFA;
+  outline: none;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 8px 12px;
+  vertical-align: middle;
+}
 
-form {
-  textarea, input[type=text] {
-    font-family: "Roboto Mono";
-    font-size: 14px;
-    background: #FAFAFA;
-    outline: none;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    padding: 8px 12px;
-    vertical-align: middle;
+button, .button {
+  display: inline-block;
+  text-decoration: none;
+  font-family: "Roboto Mono";
+  color: #fff;
+  font-size: 14px;
+  outline: none;
+  background: #0074D9;
+  border: 1px solid #0074D9;
+  border-radius: 4px;
+  padding: 8px 12px;
+  cursor: pointer;
+  vertical-align: middle;
+  
+  &.s {
+    padding: 2px 6px;
+    font-size: 12px;
   }
   
-  button, .button {
-    display: inline-block;
-    text-decoration: none;
-    font-family: "Roboto Mono";
-    color: #fff;
-    font-size: 14px;
-    outline: none;
-    background: #0074D9;
-    border: 1px solid #0074D9;
-    border-radius: 4px;
-    padding: 8px 12px;
-    cursor: pointer;
-    vertical-align: middle;
+  &:active {
+    padding: 9px 12px 7px 12px;
     
-    &:active {
-      padding: 9px 12px 7px 12px;
+    &.s {
+      padding: 3px 6px 1px 6px;
     }
+  }
+  
+  &.danger {
+    background: #FF4136;
+    border-color: #FF4136;
   }
 }

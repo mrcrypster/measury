@@ -1,12 +1,12 @@
 <?php
 
-$data = metrics::data($metric['metric'], null, ['period' => $period ?: 'day']);
+$data = metrics::data($metric['metric'], null, ['period' => $period ?: '1 day']);
 $max = $data ? max($data) : 0;
 
 return array_map(function($k, $v) use ($max, $period) {
   $line = [
     'em' => dates::local_date(dates::date_by_period($period), $k),
-    [$max && $v ? ['b' => str_repeat('•', ceil(($period ? 25 : 50) * $v / $max))] : ''],
+    [$max && $v ? ['b' => [':style' => 'width:' . (60 * $v / $max) . '%']] : ''],
     'i' => v($v)
   ];
   return [

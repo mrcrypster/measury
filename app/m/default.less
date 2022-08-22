@@ -1,17 +1,107 @@
-#help {
-  margin: 64px 8px;
+#search {
+  margin: 64px auto;
+  display: block;
+  width: 480px;
+  font-size: 24px;
+  padding: 24px 32px;
+  border-radius: 8px;
   text-align: center;
+  background: #fafafa url(/img/search.png) no-repeat 16px 24px;
+  opacity: .5;
+  
+  &:hover {
+    cursor: pointer;
+    opacity: .75;
+  }
+  
+  &:focus {
+    opacity: 1;
+    cursor: default;
+  }
+}
+
+
+
+#coverage {
+  text-align: center;
+  padding: 0 16px;
+  font-size: 12px;
+  margin: 32px 0;
+  font-weight: 100;
+  
+  b {
+    margin: 0 8px;
+  }
+  
+  .covered {
+    display: inline-block;
+    height: 4px;
+    border-radius: 2px;
+    width: 100px;
+    margin: 8px 0 0 0;
+    background: #ddd;
+    text-align: left;
+    overflow: hidden;
+    
+    .done {
+      dosplay: block;
+      display: inline-block;
+      height: 4px;
+      background: #2ECC4066;
+    }
+  }
+}
+
+
+
+#help {
+  border-radius: 8px;
+  box-shadow: 0 0 25px #aaa;
+  margin: 64px auto;
+  max-width: 600px;
+  padding: 48px 16px 16px 16px;
+  text-align: left;
+  font-size: 16px;
+  background: #333;
+  color: #ccc;
+  line-height: 200%;
+  position: relative;
+  overflow: hidden;
+  
+  &:before {
+    display: block;
+    content: 'Collect metrics by sending HTTP requests';
+    background: #222;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-size: 12px;
+    padding: 2px 16px;
+    border-bottom: 1px solid #555;
+  }
   
   p {
-    margin: 32px auto 64px auto;
+    margin: 0;
+    opacity: .5;
+    
+    &:before {
+      content: '# ';
+    }
   }
   
   code {
-    background: #222;
-    color: #eee;
-    padding: 24px 48px;
-    border-radius: 8px;
-    font-size: 24px;
+    color: #ddd;
     font-weight: 100;
+    display: block;
+    margin: 0 0 16px 0;
+    
+    &:last-child {
+      margin: 0;
+    }
+    
+    b {
+      color: #01FF7099;
+    }
   }
 }
