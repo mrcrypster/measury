@@ -1,7 +1,7 @@
 #search {
   margin: 64px auto;
   display: block;
-  width: 480px;
+  width: 630px;
   font-size: 24px;
   padding: 24px 32px;
   border-radius: 8px;
@@ -54,10 +54,54 @@
 
 
 
-#help {
+#pull {
+  max-width: 650px;
+  margin: 40px auto 0 auto;
+  width: 100%;
+  font-weight: 100;
+  font-size: 12px;
+  padding: 0 8px;
+  box-sizing: border-box;
+  
+  h3 {
+    font-size: 12px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #eee;
+  }
+  
+  th {
+    text-align: left;
+  }
+  
+  td {
+    padding: 8px 0;
+    
+    &:last-child {
+      text-align: right;
+    }
+    
+    code {
+      display: block;
+      color: #aaa;
+      font-size: 10px;
+    }
+    
+    form {
+      input {
+        width: 100%;
+        display: block;
+        margin: 0 0 10px 0;
+      }
+    }
+  }
+}
+
+
+
+.help {
   border-radius: 8px;
   box-shadow: 0 0 25px #aaa;
-  margin: 64px auto;
+  margin: 64px auto 0 auto;
   max-width: 600px;
   padding: 48px 16px 16px 16px;
   text-align: left;
@@ -70,7 +114,7 @@
   
   &:before {
     display: block;
-    content: 'Collect metrics by sending HTTP requests';
+    content: 'Push timeseries data to HTTP endpoint';
     background: #222;
     position: absolute;
     top: 0;
@@ -79,6 +123,14 @@
     font-size: 12px;
     padding: 2px 16px;
     border-bottom: 1px solid #555;
+  }
+  
+  &.pull {
+    margin-top: 20px;
+    
+    &:before {
+      content: 'Pull data using Chrome extension';
+    }
   }
   
   p {
@@ -103,5 +155,28 @@
     b {
       color: #01FF7099;
     }
+  }
+}
+
+@media only screen and (max-width: 660px) {
+  .help {
+    border-radius: 0;
+    box-shadow: none;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    
+    &.pull {
+      margin-top: 5px;
+    }
+  }
+  
+  #search {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    border-radius: 0;
+    border-left: 0;
+    border-right: 0;
   }
 }

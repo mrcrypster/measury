@@ -1,6 +1,6 @@
 #hi {
   max-width: 1000px;
-  margin: 32px auto;
+  margin: 32px auto 0 auto;
   
   img {
     max-width: 100%;
@@ -9,12 +9,12 @@
 }
 
 h1.logo {
-  background: url(/img/logo-big.png) no-repeat center 0;
+  background: url(/img/logo-big.png) no-repeat center 60px;
   background-size: 300px;
   font-size: 48px;
   font-weight: 300;
   text-align: center;
-  padding: 200px 0 0 0;
+  padding: 360px 0 0 0;
 }
 
 form#auth {
@@ -37,12 +37,15 @@ form#auth {
     h1.logo {
       font-size: 16px;
       background-size: 128px;
-      padding: 90px 0 0 0;
+      background-position: center 0;
+      padding: 150px 0 0 0;
       top: 0;
       left: 0;
     }
-  
+
     #auth {
+      margin-top: 40px;
+      
       button {
         display: block;
         margin: 8px auto;
@@ -56,5 +59,10 @@ form#auth {
         width: 100%;
       }
     }
+  }
+  
+  #foot {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
   }
 }

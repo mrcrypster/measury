@@ -12,6 +12,7 @@ phpy::on('/css.css', function($phpy) {
     exec('lessc -s /tmp/less.less /tmp/less.css');
   }
 
+  header("Expires:".gmdate('D, d M Y H:i:s \G\M\T', time() + 60*60*24*30));
   readfile('/tmp/less.css');
 });
 
@@ -19,6 +20,7 @@ phpy::on('/js.js', function($phpy) {
   header('Content-type: application/javascript');
 
   $js = $phpy->collect(['js']);
+  header("Expires:".gmdate('D, d M Y H:i:s \G\M\T', time() + 60*60*24*30));
   echo $js;
 });
 

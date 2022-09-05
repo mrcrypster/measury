@@ -191,6 +191,7 @@ ol.metrics-list {
       border: 1px solid transparent;
       border-radius: 8px;
       padding: 6px 8px;
+      display: block;
       
       &:hover {
         color: #001f3f;
@@ -282,13 +283,19 @@ ol.metrics-list {
       .show-folders {
         position: absolute;
         right: -32px;
-        top: 2px;
+        top: 0;
         display: inline-block;
-        padding: 0;
+        padding: 0 0 12px 0;
+        line-height: 12px;
         border: none;
         background: none;
-        color: #aaa;
+        color: #0074D9;
         cursor: pointer;
+        font-size: 32px;
+        
+        &:hover {
+          color: #000;
+        }
       }
       
       &.on {

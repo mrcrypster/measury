@@ -62,12 +62,35 @@
 }
 
 
+#uncovered {
+  max-width: 650px;
+  margin: 0 auto;
+  width: 100%;
+  font-weight: 100;
+  font-size: 12px;
+  padding: 0 8px;
+  box-sizing: border-box;
+  
+  h3 {
+    font-size: 12px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #eee;
+  }
+  
+  td {
+    padding: 0 0 8px 0;
+  }
+}
+
+
 #rules {
   max-width: 1000px;
   margin: 0 auto;
   width: 100%;
   font-weight: 100;
   font-size: 12px;
+  padding: 0 8px;
+  box-sizing: border-box;
   
   th, td {
     text-align: left;
@@ -75,12 +98,11 @@
     padding: 8px 0;
     background: url(/img/bg-line.png) repeat-x 0 10px;
     
-    &:first-child {
-      background: none;
-    }
-    
-    &:last-child {
-      text-align: right !important;
+    &.ok {
+      background: url(/img/ok.png) no-repeat center 0 !important;
+      background-size: 128px 128px !important;
+      padding: 160px 0 0 0;
+      text-align: center !important;
     }
     
     span {
@@ -103,8 +125,41 @@
       }
     }
     
-    &:nth-child(2) span:before {
+    &:nth-child(2) {
       background: none;
+      text-align: right !important;
+      
+      & span:before {
+        display: none;
+      }
+    }
+    
+    &:last-child, &:nth-last-child(2) {
+      background: none;
+      
+      &:last-child {
+        padding-left: 8px;
+        text-align: right;
+      }
+      
+      &:nth-last-child(2) {
+        text-align: right;
+      }
+    }
+    
+    &:nth-child(3) {
+      padding-left: 32px;
+    }
+    
+    &.status {
+      background: url(/img/warning-ok.png) no-repeat center;
+      background-size: 16px;
+      width: 24px;
+      
+      &.error {
+        background-image: url(/img/warning-on.png);
+        background-size: 20px;
+      }
     }
     
     button {
@@ -123,21 +178,49 @@
     }
     
     &.v {
-      text-align: center;
+      text-align: left;
       font-weight: bold;
     }
-    
-    ul {
-      list-style: none;
-      padding: 0;
+  }
+}
+
+
+@media only screen and (max-width: 900px) {
+  #rules {
+    td {
+      display: none;
+      padding: 2px 0;
       
-      li {
+      &.status, &.d, &.m, &.v {
+        display: table-cell;
+        font-weight: 100;
         font-size: 10px;
-        a {
-          display: inline-block;
-          background: url(/img/warning-on.png) no-repeat left center;
-          background-size: 16px;
-          padding-left: 24px;
+      }
+      
+      &.status {
+        width: 48px;
+      }
+      
+      &.v {
+        background: none;
+        padding: 0;
+      }
+      
+      &.d, &.m {
+        background: none;
+        
+        button {
+          margin: 2px 0 0 0;
+        }
+      }
+      
+      span {
+        border: none;
+        background: none;
+        padding: 8px 0 0 0;
+        
+        &:before {
+          display: none;
         }
       }
     }

@@ -11,7 +11,15 @@ while ( true ) {
     $bucket = strtotime(date('Y-m-d H:i:s', 0) . ' +' . $period);
     $metric = $r['query'];
     
-    $val = metrics::val($metric, $r['user_id'], ['bucket' => $bucket * 1000, 'period' => $period]);
+    #echo $metric . ' ';
+    #$val = metrics::val($metric, $r['user_id'], ['period' => $period]);
+    #echo ($val);
+    $val = metrics::window_val($metric, $r['user_id'], ['period' => $period]);
+    #echo '  ' . ($val);
+    #echo "\n";
+    #continue;
+    #echo $bucket . ': ' . $val;
+    #echo "\n";
     
     switch ( $r['operation'] ) {
       case 'less': $bad = $val < $r['value']; break;

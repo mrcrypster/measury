@@ -1,6 +1,6 @@
 <?php return [
   'div#hi' => [
-    'h1.logo#title' => '<b>Measury</b> <small>easily track and setup alerts for timeseries</small>',
+    'h1.logo#title' => '<b>Measury</b> <small>is used to collect and monitor timeseries data</small>',
     
     'form#auth:/auth' => [
       !user::id() ? [
@@ -11,6 +11,6 @@
       ]
     ],
     
-    'img' => [':src' => '/img/measury-dashboard.png']
+    # 'img' => [':src' => '/img/measury-dashboard.png']
   ]
 ];

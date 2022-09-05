@@ -1,17 +1,19 @@
 <?php return [
   'html' => [
-    ':v' => 3,
+    ':v' => 5,
     ':title' => 'Measury - track & manage timeseries',
     ':head' => '<link rel="preconnect" href="https://fonts.googleapis.com">' .
                '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>' .
                '<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;500&display=swap" rel="stylesheet">' .
-               '<meta name="viewport" content="width=device-width, initial-scale=1.0">',
+               '<meta name="viewport" content="width=device-width, initial-scale=1.0">' .
+               '<link rel="icon" type="image/x-icon" href="/favicon.ico">',
                
     'div#content.c' . str_replace('/', '-', phpy::endpoint()) => phpy(),
     
     strpos(phpy::endpoint(), '/m') !== 0 ? [
       'div#foot' => [
-        'a:/' => 'Measury.io home',
+        'a:/' => 'Home',
+        user::id() ? ['a:/m' => 'My metrics'] : [],
         'a:/contact' => 'Contact',
         'a:/privacy' => 'Privacy policy',
         'a:/terms' => 'Terms of Use',

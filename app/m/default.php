@@ -65,7 +65,7 @@ return [
     ],
     
     [
-      'table#rules' => phpy('/m/alerts/list', ['rules' => $rules]),
+      'table#rules' => phpy('/m/alerts/list', ['rules' => $rules]) ?: ['tr' => ['td.ok' => 'Everything is going smooth :)']],
     ],
     
     'p#coverage' => [
@@ -76,14 +76,27 @@ return [
       '<br>',
       '.covered' => ['.done' => [':style' => 'width:' . round(100 * count($rules)/metrics::total()) . '%']]
     ],
+    
+    [
+      'table#uncovered' => [
+        'tr' => ['td' => ['h3' => 'Metrics not yet covered with checks']],
+        array_map(function($m) {
+          return ['tr' => ['td' => [
+            'a' => [e($m['metric']), ':href' => '/m?m=' . urlencode($m['metric'])]
+          ]]];
+        }, metrics::uncovered())
+      ],
+    ],
 
     [
-      'div#help' => [
-        'p' => 'To collect timeseries event, send HTTP request to:',
+      'div.help' => [
+        'p' => 'Send HTTP requests to the following url:',
         'code' => 'https://measury.io/' . user::data()['pk'] . '/<b>[event_name]</b>',
         ['p' => 'You can send custom value:'],
         ['code' => 'https://measury.io/' . user::data()['pk'] . '/[event_name]/<b>[value]</b>']
       ]
-    ]
+    ],
+    
+    ['table#pull' => phpy('/m/pulls'),]
   ],
 ];
