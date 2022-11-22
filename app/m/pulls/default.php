@@ -12,7 +12,7 @@ return [
   array_map(function($p) {
     return ['tr' => [
       ['td' => [e($p['url']), 'code' => e($p['selector'])]],
-      ['td' => [e($p['metric'])]],
+      ['td' => ['a' => [e($p['metric']), ':href' => '?m=' . e($p['metric'])]]],
       ['td' => $p['last_fetch'] ? dates::local_date('m/d H:i', strtotime($p['last_fetch'])) : 'not yet fetched'],
     ]];
   }, mysqly::fetch('pulls', ['user_id' => user::id()])),

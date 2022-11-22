@@ -1,6 +1,6 @@
 <?php return [
   'html' => [
-    ':v' => 5,
+    ':v' => 6,
     ':title' => 'Measury - track & manage timeseries',
     ':head' => '<link rel="preconnect" href="https://fonts.googleapis.com">' .
                '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>' .
