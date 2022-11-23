@@ -1,0 +1,15 @@
+<?php return [
+  # 'a.logo:/m' => '',
+  
+  #'button.search' => '',
+  #'a.b.alerts:/m/alerts' => '',
+  
+  [
+    'input#search::Search metrics' => [':list' => 'my-metrics'],
+    'datalist' => [array_map(function($m) {
+      return ['option' => $m];
+    }, metrics::all()), ':id' => 'my-metrics']
+  ],
+  
+  'a.exit:/auth/exit' => 'Exit'
+];

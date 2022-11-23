@@ -46,18 +46,7 @@ return [
       ],
     ],
     
-    [
-      'h2' => '24 hours',
-      'canvas.chrt' => [
-        ':data-data' => json_encode(metrics::data($metric['metric'], null, ['period' => '1 day'])),
-        ':data-color' => '#2ECC40'
-      ],
-    ],
-    
-    [
-      'h2' => '30 days',
-      'canvas.chrt' => [':data-data' => json_encode(metrics::data($metric['metric'], null, ['period' => '30d']))],
-    ],
+    'canvas#chrt' => [':data-data' => json_encode(metrics::data($metric['metric'], null, ['period' => $period ?: '1 day']))],
     
     /*'div#charts' => [
       'div#day' => [

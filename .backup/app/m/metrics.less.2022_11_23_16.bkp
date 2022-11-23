@@ -67,26 +67,15 @@
 
 /* Metric */
 #metric {
+  max-width: 900px;
+  margin: 1em auto;
   display: block;
   
   
   #path {
-    margin: 2em 4em 0 4em;
     position: relative;
+    width: 100%;
     display: block;
-  }
-  
-  
-  h2 {
-    margin: 1.5em 0 .5em 2em;
-    font-weight: 100;
-    color: #aaa;
-    font-size: 2em;
-  }
-  
-  
-  canvas.chrt {
-    margin: 0 4em;
   }
   
   

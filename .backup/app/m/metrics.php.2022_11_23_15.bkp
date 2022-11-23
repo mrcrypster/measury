@@ -14,7 +14,7 @@
             [ ':data' => ['id' => $f['id']], e($f['title']) ]
         ];
       },
-      [['title' => 'Unlabeled']] + mysqly::fetch('folders', ['user_id' => user::id()])
+      [['title' => 'Unlabeled metrics']] + mysqly::fetch('folders', ['user_id' => user::id()])
     ),
     
     'button.add-folder:new_folder()' => 'New label',
@@ -25,8 +25,8 @@
     'div.help' => [
       'p' => 'Send HTTP requests to the following url:',
       'code' => 'https://measury.io/' . user::data()['pk'] . '/<b>[event_name]</b>',
-      ['p' => 'To send metric with a custom value:'],
-      ['code' => 'https://measury.io/' . user::data()['pk'] . '/[event_name]/<b>[value]</b>']
+      /*['p' => 'You can send custom value:'],
+      ['code' => 'https://measury.io/' . user::data()['pk'] . '/[event_name]/<b>[value]</b>']*/
     ]
   ] : [],
   

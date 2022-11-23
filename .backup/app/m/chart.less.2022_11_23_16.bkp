@@ -1,4 +1,4 @@
-/*@keyframes blinker { 25% { opacity: .5; } }
+@keyframes blinker { 25% { opacity: .5; } }
 
 ul.timeseries {
   padding: 0;
@@ -210,4 +210,5 @@ ul.timeseries {
       }
     }
   }
-}*/
+}
+
