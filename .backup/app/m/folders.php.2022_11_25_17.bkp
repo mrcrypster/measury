@@ -1,0 +1,26 @@
+<?php
+
+$r = [
+  array_map(
+    function($f) {
+      $metrics = metrics::find(null, ['f' => $f['id']]);
+      $on = $_REQUEST['f'] == $f['id'];
+      return [
+        ($on ? 'span' : 'a') . ($on ? '.on' : '') . (!$f['id'] ? '.dflt' : '') . ':folder(' . ($f['id']) . ')' =>
+          $on ?
+          [
+            'span' => e($f['title']),
+            $f['id'] ? ['input' => [':data' => ['id' => $f['id']], ':spellcheck' => 'false', e($f['title']) ]] : []
+          ] :
+          [ ':data' => ['id' => $f['id']], e($f['title']) ]
+      ];
+    },
+    array_merge([['title' => 'Unlabeled']], mysqly::fetch('folders', ['user_id' => user::id()]))
+  ),
+  
+  'button.add-folder:new_folder()' => 'New label'
+];
+
+pub('folders');
+
+return $r;

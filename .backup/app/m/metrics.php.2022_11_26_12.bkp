@@ -1,0 +1,20 @@
+<?php
+
+$metrics = metrics::find(null, $_REQUEST);
+
+return ['#metrics' => [
+  '#folders' => phpy('/m/folders'),
+  
+  'ol#metrics-list' => array_map(function($m) {
+    return [
+      'li' . ($_REQUEST['m'] == $m ? '.on' : '') => [
+        'a' . ":metric('{$m}')" => [
+          $m,
+          ':data' => ['metric' => $m]
+        ],
+        
+        'b' => v(metrics::val($m))
+      ]
+    ];
+  }, $metrics)
+]];

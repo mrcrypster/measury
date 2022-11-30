@@ -1,0 +1,136 @@
+function metric(m) {
+  if ( qs('#metrics-list li[data-metric="' + m + '"]')[0] || qs('#metrics-list li[data-metric="' + m + '"]')[0].classList.contains('on') ) {
+    return;
+  }
+  
+  qs('#help')[0].classList.add('off');
+  
+  qs('#metrics-list li.on').forEach(function(el) {
+    el.classList.remove(['on']);
+  });
+  
+  qs('#metrics-list li[data-metric="' + m + '"]').forEach(function(el) {
+    el.classList.add('loading');
+  });
+  
+  window.history.pushState({}, '', '/m?f=' + (new URL(location)).searchParams.get('f') + '&m=' + m );
+  phpy('/m/metric?m=' + m, {}, function() {
+    qs('#metrics-list li[data-metric="' + m + '"]').forEach(function(el) {
+      el.classList.remove('loading');
+      el.classList.add('on');
+    });
+  });
+}
+
+
+
+function remove(m) {
+  if ( confirm('Are you sure?') ) {
+    phpy('/m/drop?m=' + m)
+  }
+}
+
+
+
+function help() {
+  qs('#help')[0].classList.toggle('off');
+}
+
+
+
+sub('metrics', function() {
+  setTimeout(function() {
+    // Drag and Drop
+    on('#metrics-list li', 'dragstart', function(e) {
+      this.classList.add('dragging');
+      e.dataTransfer.setData('metric', this.querySelector('a').dataset.metric);
+    });
+    
+    on('#metrics-list li', 'dragend', function() {
+      this.classList.remove('dragging');
+    });
+    
+    on('#folders > a', 'dragover', function(e) {
+      e.preventDefault();
+      this.classList.add('dragover');
+    });
+    
+    on('#folders > a', 'dragleave', function() {
+      this.classList.remove('dragover');
+    });
+    
+    on('#folders > a', 'drop', function(e) {
+      this.classList.remove('dragover');
+      let m = e.dataTransfer.getData('metric');
+      
+      if ( m ) {
+        phpy('/m/move', {metric: m, folder: this.dataset.id})
+        qs('#metrics-list li a[data-metric="' + m + '"]', function(el) {
+          el.parentNode.remove();
+        })
+      }
+    });
+  }, 100);
+});
+
+
+
+sub('metric', function() {
+  setTimeout(function() {
+    qs('#metrics-list li input').forEach(function(i) {
+      i.addEventListener('keyup', function() {
+        this.parentNode.querySelector('small').innerText = this.value;
+        phpy('/m/note', {note: this.value, m: this.parentNode.dataset.metric});
+      });
+    });
+    
+    qs('.chrt').forEach(function(el) {
+      let data = JSON.parse(el.dataset.data);
+      let color = el.dataset.color || '#0074D9';
+      
+      
+      new Chart(el, {
+        type: 'line',
+        data: {
+          labels: Object.keys(data),
+          datasets: [{
+            label: 'Value',
+            borderColor: color + 'aa',
+            backgroundColor: color + '22',
+            fill: {target: 'origin'},
+            data: Object.values(data),
+            borderWidth: 2
+          }]
+        },
+        options: {
+          //aspectRatio: 3,
+          responsive: true,
+          maintainAspectRatio : false,
+          animation: {duration: 0},
+          
+          scales: {
+            y: {
+              beginAtZero: false,
+              grid: {
+                display: true,
+                drawTicks: true,
+                color: '#2a2a2a'
+              }
+            },
+            x: {
+              ticks: { display: false },
+              grid: {
+                display: true,
+                drawTicks: true,
+                color: '#2a2a2a'
+              }
+            }
+          },
+          plugins: {
+            legend: { display: false }
+          }
+        }
+      });
+    });
+  }, 100);
+});

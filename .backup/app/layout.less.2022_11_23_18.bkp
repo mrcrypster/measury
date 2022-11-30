@@ -1,0 +1,128 @@
+body {
+  font-family: "Roboto Mono";
+}
+
+.ibs {
+  display: inline-block;
+  width: 16px;
+  vertical-align: middle;
+}
+
+a {
+  color: #0074D9;
+  
+  &:hover {
+    color: #001f3f;
+  }
+}
+
+
+#content {
+  max-width: 100%;
+  box-sizing: border-box;
+  padding-bottom: 0;
+}
+
+
+#doc {
+  padding: 32px 16px;
+  margin: 0 auto;
+  max-width: 800px;
+  display: block;
+  font-weight: 100;
+  
+  .back {
+    display: block;
+    margin: 0 0 8px 0;
+  }
+  
+  h1 {
+    font-size: 64px;
+    font-weight: normal;
+    border-bottom: 10px solid #EEE;
+    padding: 0 0 32px 0;
+    margin: 0 0 32px 0;
+  }
+  
+  h2 {
+    font-weight: 300;
+    font-size: 32px;
+    margin: 64px 0 16px 0;
+  }
+  
+  form textarea {
+    width: 100%;
+    min-height: 300px;
+    margin: 0 0 16px 0;
+    box-sizing: border-box;
+    padding: 8px 12px;
+  }
+  
+  form input {
+    margin: 0 16px 0 0;
+  }
+}
+
+
+#foot {
+  padding: 32px;
+  font-size: 12px;
+  text-align: center;
+  margin: 40px 0 0 0;
+  box-sizing: border-box;
+  line-height: 150%;
+
+  a {
+    display: inline-block;
+    margin: 10px;
+  }
+}
+
+textarea, input[type=text], select {
+  font-family: "Roboto Mono";
+  font-size: 14px;
+  background: #FAFAFA;
+  outline: none;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 8px 12px;
+  vertical-align: middle;
+}
+
+button, .button {
+  display: inline-block;
+  text-decoration: none;
+  font-family: "Roboto Mono";
+  color: #fff;
+  font-size: 14px;
+  outline: none;
+  background: #0074D9;
+  border: 1px solid #0074D9;
+  border-radius: 4px;
+  padding: 8px 12px;
+  cursor: pointer;
+  vertical-align: middle;
+  
+  &.s {
+    padding: 2px 6px;
+    font-size: 12px;
+  }
+  
+  &:active {
+    padding: 9px 12px 7px 12px;
+    
+    &.s {
+      padding: 3px 6px 1px 6px;
+    }
+  }
+  
+  &.danger {
+    background: #FF4136;
+    border-color: #FF4136;
+  }
+  
+  &.gray {
+    border-color: #aaa;
+    background-color: #aaa;
+  }
+}

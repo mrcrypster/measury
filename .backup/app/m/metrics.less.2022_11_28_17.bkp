@@ -1,0 +1,460 @@
+/* Dashboard Navigation */
+#nav {
+  display: block;
+  background: #FAFAFA;
+  border-bottom: 1px solid #eee;
+  padding: 8px;
+  position: relative;
+  font-size: 12px;
+  text-align: left;
+  
+  a {
+    display: inline-block;
+    vertical-align: middle;
+  }
+  
+  white-space: nowrap;
+  
+  /*.logo {
+    background: url(/img/logo.png) no-repeat center;
+    background-size: 40px;
+    display: inline-block;
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    width: 40px;
+    height: 24px;
+    vertical-align: middle;
+  }*/
+  
+  
+  
+  /* Actions */
+
+  .search {
+    background: url(/img/search.png) no-repeat center;
+    background-size: 16px;
+  }
+  
+  .add-folder {
+    background: url(/img/add-folder.png) no-repeat center;
+    background-size: 16px;
+  }
+  
+  .alerts {
+    background: url(/img/warning.png) no-repeat center;
+    background-size: 16px;
+  }
+  
+  .exit {
+    position: absolute;
+    background: url(/img/logout.png) no-repeat center;
+    background-size: 20px;
+    width: 20px;
+    height: 20px;
+    opacity: .25;
+    text-indent: 999;
+    right: 24px;
+    top: 24px;
+    overflow: hidden;
+    opacity: .25;
+    
+    &:hover {
+      opacity: .5;
+    }
+  }
+}
+
+
+
+/* Metric */
+#metric {
+  display: block;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding-bottom: 0;
+  background: #222;
+  height: 50%;
+  box-sizing: border-box;
+  overflow-y: auto;
+  
+  
+  #charts {
+    display: block;
+    width: 100%;
+    margin: 0 0 7em 0;
+    padding: 0 2em;
+    box-sizing: border-box;
+    
+    
+    .chart {
+      box-sizing: border-box;
+      display: inline-block;
+      width: 50%;
+      height: 50%;
+      padding-right: 1em;
+      
+      &:last-child {
+        padding-left: 1em;
+        padding-right: 0;
+      }
+    }
+  }
+  
+  
+  #path {
+    margin: 2em 4em 0 4em;
+    position: relative;
+    display: block;
+  }
+  
+  
+  h2 {
+    margin: .75em 0 .5em 0;
+    font-weight: 100;
+    color: #666;
+    font-size: 2em;
+    
+    b {
+      margin: 0 0 0 1em;
+      color: #999;
+    }
+  }
+  
+  
+  canvas.chrt {
+    width: 100%;
+  }
+  
+  
+  #tools {
+    display: block;
+    text-align: center;
+    font-size: 12px;
+    margin: 20px 0;
+    
+    a, button {
+      display: inline-block;
+      border: none;
+      padding-left: 20px;
+      color: #0074D9;
+      background: #222 url(/img/warning-off.png) no-repeat left;
+      text-decoration: none;
+      background-size: 16px;
+      overflow: hidden;
+      font-size: 12px;
+      opacity: .75;
+      margin-left: 16px;
+      vertical-align: middle;
+      
+      &.checked {
+        background-image: url(/img/warning-ok.png);
+      }
+      
+      &.raised {
+        background-image: url(/img/warning-on.png);
+        opacity: 1;
+      }
+      
+      &:hover {
+        opacity: 1;
+      }
+    }
+    
+    a.remove {
+      color: #FF4136;
+      background-image: url(/img/drop-on.png);
+    }
+  }
+}
+
+
+
+/* Metrics & folders */
+
+#metrics {
+  overflow-y: auto;
+  max-width: 900px;
+  margin: 10px auto;
+  position: relative;
+  display: block;
+  
+  #folders {
+    position: absolute;
+    width: 200px;
+    left: 1em;
+    max-height: 100%;
+    overflow-y: auto;
+    font-size: 12px;
+    
+    form {
+      position: relative;
+      
+      button {
+        position: absolute;
+        top: 0;
+        right: 0;
+        display: none;
+      }
+      
+      input {
+        width: 100%;
+        box-sizing: border-box;
+        opacity: .5;
+        padding-right: 2.75em;
+        border-color: transparent;
+        background: transparent;
+        font-size: 12px;
+        
+        &:hover {
+          opacity: .75
+        }
+        
+        &:focus {
+          opacity: 1;
+          border-color: #eee;
+          background: #fafafa;
+        }
+        
+        &:focus + button {
+          border-top-left-radius: 0;
+          border-bottom-left-radius: 0;
+          display: block;
+        }
+      }
+    }
+    
+    
+    button.add-folder {
+      margin-top: 1em;
+    }
+    
+    & > a, & > span {
+      position: relative;
+      display: block;
+      vertical-align: middle;
+      padding: .5em .75em;
+      border-radius: .4em;
+      font-size: 12px;
+      border: 1px solid transparent;
+      margin: 0 0 .5em 0;
+      
+      &.dragover {
+        border: 1px dashed #FF851B;
+        color: #FF851B;
+      }
+      
+      &.on {
+        background: #f9f9f9;
+        position: relative;
+        
+        &:after {
+          background: #fff;
+          border-left: 1px solid #ddd;
+          border-right: 1px solid #ddd;
+        }
+        
+        & > span {
+          visibility: hidden;
+        }
+        
+        &.dflt > span {
+          visibility: visible;
+          font-weight: bold;
+        }
+        
+        input {
+          left: 0;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          position: absolute;
+          background: transparent;
+          border: none;
+          outline: none;
+          padding: .5em .75em;
+          font-family: "Roboto Mono";
+          font-weight: bold;
+          font-size: 12px;
+        }
+      }
+    }
+    
+    & > a {
+      &.load, &:active {
+        opacity: .5;
+        padding: .6em .75em .4em .75em;
+      }
+    }
+    
+    & > a:hover {
+      border-color: #eee;
+      background: #fafafa;
+    }
+  }
+  
+  
+  /* Metrics names */
+  #metrics-list {
+    box-sizing: border-box;
+    list-style: none;
+    padding: 0 0 0 20px;
+    margin: 0 0 0 220px;
+    text-align: left;
+    display: block;
+    height: calc(50% - 100px);
+    overflow-x: hidden;
+    overflow-y: auto;
+  
+    li {
+      display: block;
+      width: 100%;
+      margin: 0;
+      font-size: 12px;
+      font-weight: 100;
+      border-bottom: 1px solid #f7f7f7;
+      padding: 8px 0 12px 10px;
+      cursor: pointer;
+      color: #0074D9;
+      box-sizing: border-box;
+      position: relative;
+      
+      input {
+        display: none;
+      }
+      
+      small {
+        color: #888;
+        margin: 0 0 0 1em;
+        font-size: 11px;
+      }
+      
+      b {
+        text-align: right;
+        padding: 0 10px 0 0;
+        color: #888;
+        
+        &:last-child {
+          position: absolute;
+          right: 0;
+          top: 8px;
+        }
+      }
+      
+      &.h {
+        pointer-events: none;
+        text-decoration: none;
+        
+        b {
+          color: #aaa;
+          font-weight: 100;
+        }
+      }
+      
+      &:hover {
+        color: #001f3f;
+      }
+      
+      &:active {
+        padding: 9px 0 11px 10px;
+      }
+      
+      &.dragging {
+        color: #FF851B !important;
+        text-decoration: none;
+      }
+      
+      &.loading {
+        opacity: .5;
+      }
+      
+      &.on {
+        cursor: default;
+        text-decoration: none;
+        color: #000;
+        font-weight: 500;
+        background: #fafafa;
+        padding: 8px 0 12px 10px;
+        
+        small {
+          display: none;
+        }
+        
+        b {
+          color: #444;
+        }
+        
+        input {
+          display: inline-block;
+          background: transparent;
+          padding: 0;
+          margin: 0;
+          border: none;
+          margin: 0 0 0 1em;
+          font-size: 11px;
+          color: #666;
+          width: 300px;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  #search {
+    width: 125px;
+  }
+  
+  #metrics {
+    #folders {
+      width: 35%;
+    }
+    
+    #metrics-list {
+      margin-left: 35%;
+      
+      li {
+        small {
+          display: block;
+          width: 100%;
+          padding: 0;
+          margin: 0;
+        }
+        
+        &.on {
+          input {
+            display: block;
+            width: 100%;
+            margin: 0;
+          }
+        }
+      }
+    }
+  }
+ 
+  #metric {
+    h2 {
+      font-size: 14px;
+    }
+    
+    #charts {
+      display: block;
+      margin-bottom: 0;
+      padding: 0 10px;
+      
+      .chart {
+        width: 100%;
+        display: block;
+        margin-bottom: 3.5em;
+        height: 20%;
+        padding: 0;
+        
+        &:last-child {
+          padding: 0;
+        }
+      }
+    }
+  }
+}

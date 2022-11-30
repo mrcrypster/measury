@@ -1,0 +1,55 @@
+<?php
+
+# Index metrics for users
+
+require_once __DIR__ . '/../lib.php';
+
+while ( true ) {
+  foreach ( mysqly::fetch('SELECT * FROM rules WHERE is_enabled = 1') as $r ) {
+    
+    $period = $r['period'] . ' ' . $r['period_type'];
+    $bucket = strtotime(date('Y-m-d H:i:s', 0) . ' +' . $period);
+    $metric = $r['query'];
+    
+    #echo $metric . ' ';
+    #$val = metrics::val($metric, $r['user_id'], ['period' => $period]);
+    #echo ($val);
+    $val = metrics::window_val($metric, $r['user_id'], ['period' => $period]);
+    #echo '  ' . ($val);
+    #echo "\n";
+    #continue;
+    #echo $bucket . ': ' . $val;
+    #echo "\n";
+    
+    switch ( $r['operation'] ) {
+      case 'less': $bad = $val < $r['value']; break;
+      case 'more': $bad = $val < $r['value']; break;
+      case 'equal': $bad = $val == $r['value']; break;
+    }
+    
+    $alert = [ 'rule_id' => $r['id'], 'metric' => $metric ];
+    
+    if ( $bad ) {
+      if ( !mysqly::fetch('alerts', $alert) ) {
+        echo 'Measury Alert -> ' . $metric . ': ' . $val . "\n";
+        
+        $body = 'Aloha!' . "\n\n".
+                $r['aggregation'] . '(' . $metric . ') ' . ' for ' .
+                $r['period'] . ' ' . $r['period_type'] . ' is ' .
+                $r['operation'] . ' than ' . $r['value'] . "\n" .
+                'https://measury.io/m?m=' . $metric . "\n\n" .
+                'Your Measury service';
+                
+        email(mysqly::users_email($r['user_id']), 'Measury alert for: ' . $metric, $body);
+        mysqly::insert('alerts', $alert);
+      }
+    }
+    else {
+      if ( mysqly::fetch('alerts', $alert) ) {
+        mysqly::remove('alerts', $alert);
+      }
+    }
+  }
+  
+  sleep(1);
+}

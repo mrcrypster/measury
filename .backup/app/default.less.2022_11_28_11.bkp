@@ -1,0 +1,95 @@
+.chart-bg {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: url(/img/chart-bg.png) no-repeat;
+  background-position: bottom;
+  background-size: cover;
+  height: 33%;
+  z-index: -1;
+  opacity: .25;
+}
+
+#hi {
+  max-width: 1000px;
+  margin: 15vh auto 0 auto;
+  
+  img {
+    max-width: 100%;
+    margin: 16px auto;
+  }
+}
+
+h1.logo {
+  background: url(/img/logo-big.png) no-repeat center 60px;
+  background-size: 300px;
+  font-size: 36px;
+  font-weight: 300;
+  text-align: center;
+  padding: 380px 0 0 0;
+}
+
+form#auth {
+  text-align: center;
+  height: 64px;
+  margin-top: 60px;
+  
+  input {
+    margin-right: 1em;
+    width: 300px;
+  }
+}
+
+
+
+#foot {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+
+
+@media only screen and (max-width: 1000px) {
+  #hi {
+    position: static;
+    transform: none;
+    width: auto;
+    padding: 16px;
+    box-sizing: border-box;
+    
+    h1.logo {
+      font-size: 16px;
+      background-size: 128px;
+      background-position: center 0;
+      padding: 150px 0 0 0;
+      top: 0;
+      left: 0;
+    }
+
+    #auth {
+      margin-top: 40px;
+      
+      button {
+        display: block;
+        margin: 8px auto;
+        box-sizing: border-box;
+        width: 100%;
+      }
+      
+      input {
+        margin: 0;
+        box-sizing: border-box;
+        width: 100%;
+      }
+    }
+  }
+  
+  #foot {
+    position: static;
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
+}

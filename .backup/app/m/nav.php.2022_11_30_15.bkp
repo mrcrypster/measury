@@ -1,0 +1,39 @@
+<?php
+
+$rules = mysqly::fetch('rules', ['user_id' => user::id()]);
+
+return [
+  [ 'input#search::Search...' => [':autocomplete' => 'off'] ],
+  ['#search-results' => ['em' => 'Found metrics will appear here...']],
+  
+  metrics::total() ? [
+    'span#coverage' => [
+      '.covered.progressbar' => [
+        ':onclick' => 'coverage()',
+        '.done.bar' => [':style' => 'width:' . round(100 * count($rules)/metrics::total()) . '%'],
+        ['.hint' => [['b' => count($rules)], ' out of ', ['b' => metrics::total()], ' metrics are covered with automated checks']]
+      ],
+      
+      'ul' => array_map(function($m) {
+        return ['li' => ['a:/m?m=' . $m['metric'] . '&f=' . $m['folder_id'] => e($m['metric'])]];
+      }, metrics::uncovered(user::id()))
+    ]
+  ] : [],
+  
+  /*[
+      'table#uncovered' => [
+        'tr' => ['td' => ['h3' => 'Metrics not yet covered with checks']],
+        array_map(function($m) {
+          return ['tr' => ['td' => [
+            'a' => [e($m['metric']), ':href' => '/m?m=' . urlencode($m['metric'])]
+          ]]];
+        }, metrics::uncovered())
+      ],
+    ],*/
+  
+  
+  '#alerts' => phpy('/m/alerts/list', ['rules' => $rules]),
+  
+  'a.please-help:help()' => 'Help',
+  'a.exit:/auth/exit' => 'Exit'
+];

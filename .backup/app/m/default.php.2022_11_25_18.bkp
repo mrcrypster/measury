@@ -1,0 +1,27 @@
+<?php
+
+/*if ( $metric['folder_id'] && ($metric['folder_id'] != $_GET['f']) )  {
+  redirect('/m?m=' . $metric['metric'] . '&f=' . $metric['folder_id']);
+}*/
+
+if ( $metric && $_GET['drop'] ) {
+  $k = user::data()['pk'];
+  redis("DEL {$k}/{$metric['metric']}");
+  mysqly::remove('metrics', [
+    'user_id' => user::id(),
+    'metric' => $metric['metric']
+  ]);
+  redirect('/m');
+}
+
+#phpy::pub('redata', [
+#  'metric' => $metric['metric'],
+#  'last_update' => metrics::last_update($metric['metric'])
+#]);
+
+
+return [
+  '#nav' => phpy('m/nav'),
+  phpy('m/metrics'),
+  ['#metric' => '']
+];

@@ -1,0 +1,176 @@
+.progressbar {
+  display: inline-block;
+  height: 8px;
+  border-radius: 4px;
+  width: 50px;
+  margin: 8px 0 0 0;
+  background: #ccc;
+  text-align: left;
+  border: 1px solid #fafafa;
+  position: relative;
+  
+  .hint {
+    display: none;
+    white-space: normal;
+    position: absolute;
+    top: -100%;
+    left: 125%;
+    width: 200px;
+    font-size: 11px;
+    text-align: left;
+    font-weight: 100;
+    line-height: 125%;
+    color: #666;
+    z-index: 1;
+  }
+  
+  .bar {
+    dosplay: block;
+    display: inline-block;
+    height: 8px;
+    border-radius: 4px;
+    background: #2ECC4088;
+  }
+}
+
+
+
+#coverage {
+  text-align: center;
+  padding: 0 16px;
+  font-size: 12px;
+  display: inline-block;
+  position: relative;
+  
+  .covered {
+    .done {
+      background: #0074D988;
+    }
+    
+    &:hover {
+      .hint {
+        display: block;
+        background: #fafafa;
+      }
+    }
+  }
+  
+   &:hover {
+    .covered {
+      border-color: #888;
+      cursor: pointer;
+    }
+  }
+}
+
+
+
+#pull {
+  max-width: 650px;
+  margin: 40px auto 0 auto;
+  width: 100%;
+  font-weight: 100;
+  font-size: 12px;
+  padding: 0 8px;
+  box-sizing: border-box;
+  
+  h3 {
+    font-size: 12px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #eee;
+  }
+  
+  th {
+    text-align: left;
+  }
+  
+  td {
+    padding: 8px 0;
+    
+    &:last-child {
+      text-align: right;
+    }
+    
+    code {
+      display: block;
+      color: #aaa;
+      font-size: 10px;
+    }
+    
+    form {
+      input {
+        width: 100%;
+        display: block;
+        margin: 0 0 10px 0;
+      }
+    }
+  }
+}
+
+
+
+#help {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  box-sizing: border-box;
+  overflow-y: auto;
+  
+  margin: 0;
+  box-sizing: border-box;
+  padding: 0;
+  text-align: left;
+  font-size: 16px;
+  color: #aaa;
+  line-height: 200%;
+
+  background: #222;
+  
+  opacity: .95;
+  
+  &.off {
+    display: none;
+  }
+  
+  
+  .inside {
+    display: block;
+    max-width: 500px;
+    margin: 2em auto 0 auto;
+  }
+  
+  p {
+    &:first-child {
+      background: url(/img/help.png) no-repeat;
+      padding-left: 5em;
+    }
+    
+    margin: 0;
+    color: #666;
+  }
+  
+  code {
+    color: #ccc;
+    font-weight: 100;
+    display: block;
+    margin: 0 0 16px 0;
+    
+    &:last-child {
+      margin: 0;
+    }
+    
+    b {
+      color: #3D9970;
+    }
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .help {
+    font-size: 12px;
+    padding: 10px;
+    margin: 0;
+  }
+}

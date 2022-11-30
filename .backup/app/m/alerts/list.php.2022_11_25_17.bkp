@@ -1,0 +1,53 @@
+<?php
+
+if ( !$rules ) {
+  return;
+}
+
+$errors = [];
+
+foreach ( $rules as $rule ) {
+  $error = mysqly::fetch('alerts', ['rule_id' => $row['id']]);
+  if ( !$error ) continue;
+  
+  $rule['error'] = $error;
+  $errors[] = $rule;
+}
+
+
+$total = count($rules);
+$ok = ($total - count($errors));
+
+return [
+  '.progressbar' => [
+    '.bar' => [':style' => 'width: ' . ceil($ok/$total * 100) . '%'],
+    '.hint' => [['b' => $ok], ' out of ', ['b' => $total], ' metrics checks show they are fine']
+  ]
+];
+
+
+/*return [
+  array_map(function($row) {
+    
+    
+    
+    return [
+      'tr#r-' . $row['id'] => [
+        
+        ['td.status' . ($is_error ? '.error' : '') => []],
+        ['td' => ['span' => 'if']],
+        ['td.v.m' => [
+          'span' => [$row['aggregation'], ' ( ', 'a' => [e($row['query']), ':href' => '/m?m=' . urlencode($row['query'])], ' )']
+        ]],
+        ['td' => ['span' => 'for the last']],
+        ['td.v' => ['span' => [ $row['period'], ' ', $row['period_type']]]],
+        ['td' => ['span' => 'is']],
+        ['td.v' => ['span' => $row['operation']]],
+        ['td' => ['span' => 'than']],
+        ['td.v' => ['span' => $row['value']]],
+        
+        ['td.d' => ['button:/m/alerts/drop' => ['', ':data' => ['id' => $row['id']]]]],
+      ]
+    ];
+  }, $rules)
+];*/

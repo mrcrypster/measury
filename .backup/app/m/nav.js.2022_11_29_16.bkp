@@ -1,0 +1,19 @@
+on('#search', 'keyup', function() {
+  phpy('/m/search', {q: this.value}, function(r) {
+    qs('')
+  });
+});
+
+on('#search', 'focus', function() {
+  this.classList.add('focus');
+  qs('#search-results')[0].classList.add('on');
+});
+
+document.addEventListener('click', function(e) {
+  if ( qs('#search.focus').length >= 1 ) {
+    if ( !e.target.matches('#search, #search *, #search-results *') ) {
+      qs('#search.focus')[0].classList.remove('focus');
+      qs('#search-results')[0].classList.remove('on');
+    }
+  }
+});

@@ -1,0 +1,33 @@
+<?php
+
+#phpy::pub('redata', [
+#  'metric' => $metric['metric'],
+#  'last_update' => metrics::last_update($metric['metric'])
+#]);
+
+
+return [
+  '#nav' => phpy('m/nav'),
+  phpy('m/metrics'),
+  
+  phpy('/m/metric'),
+  
+  'div#help' . ($_GET['m'] ? '.off' : '') => [
+    '.inside' => [
+      ['p' => 'Measury.io collects metrics over a simple HTTP(s) protocol.
+               Metrics are used to count number of certain events over time.'],
+              '<br/>',
+      
+      /*['p' => 'Use your favorite HTTP lib to send requests to measury.io to collect metrics..'],
+              '<br/>',*/
+      
+      ['p' => 'Send HTTP request to the following url to track a metric with [some_event] name:'],
+      ['code' => 'https://measury.io/' . user::data()['pk'] . '/<b>[some_event]</b>'],
+      
+      ['p' => 'You can set a custom value (= number of events you want to track within a single request):'],
+      ['code' => 'https://measury.io/' . user::data()['pk'] . '/[some_event]/<b>[value]</b>'],
+      
+      ['p' => 'New metrics are created automatically and become available within 5 seconds from first tracking request.']
+    ]
+  ]
+];

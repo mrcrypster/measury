@@ -1,0 +1,397 @@
+/* Dashboard Navigation */
+#nav {
+  display: block;
+  background: #FAFAFA;
+  border-bottom: 1px solid #eee;
+  padding: 8px;
+  position: relative;
+  font-size: 12px;
+  text-align: left;
+  
+  a {
+    display: inline-block;
+    vertical-align: middle;
+  }
+  
+  /*.logo {
+    background: url(/img/logo.png) no-repeat center;
+    background-size: 40px;
+    display: inline-block;
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    width: 40px;
+    height: 24px;
+    vertical-align: middle;
+  }*/
+  
+  
+  
+  /* Actions */
+
+  .search {
+    background: url(/img/search.png) no-repeat center;
+    background-size: 16px;
+  }
+  
+  .add-folder {
+    background: url(/img/add-folder.png) no-repeat center;
+    background-size: 16px;
+  }
+  
+  .alerts {
+    background: url(/img/warning.png) no-repeat center;
+    background-size: 16px;
+  }
+  
+  .exit {
+    position: absolute;
+    background: url(/img/logout.png) no-repeat center;
+    background-size: 20px;
+    width: 20px;
+    height: 20px;
+    opacity: .25;
+    text-indent: 999;
+    right: 24px;
+    top: 24px;
+    overflow: hidden;
+    opacity: .25;
+    
+    &:hover {
+      opacity: .5;
+    }
+  }
+}
+
+
+
+/* Metric */
+#metric {
+  display: block;
+  
+  
+  #path {
+    margin: 2em 4em 0 4em;
+    position: relative;
+    display: block;
+  }
+  
+  
+  h2 {
+    margin: 1.5em 0 .5em 2em;
+    font-weight: 100;
+    color: #aaa;
+    font-size: 2em;
+  }
+  
+  
+  canvas.chrt {
+    margin: 0 4em;
+  }
+  
+  
+  #tools {
+    position: absolute;
+    right: 0;
+    top: -6px;
+    display: block;
+    text-align: left;
+    font-size: 12px;
+    
+    a, button {
+      display: inline-block;
+      border: none;
+      padding-left: 20px;
+      color: #0074D9;
+      background: #fff url(/img/warning-off.png) no-repeat left;
+      text-decoration: none;
+      background-size: 16px;
+      overflow: hidden;
+      font-size: 12px;
+      opacity: .75;
+      margin-left: 16px;
+      vertical-align: middle;
+      
+      &.checked {
+        background-image: url(/img/warning-ok.png);
+      }
+      
+      &.raised {
+        background-image: url(/img/warning-on.png);
+        opacity: 1;
+      }
+      
+      &:hover {
+        opacity: 1;
+      }
+    }
+    
+    a.remove {
+      color: #FF4136;
+      background-image: url(/img/drop-on.png);
+    }
+  }
+}
+
+
+
+/* Folders */
+
+#metrics {
+  max-width: 900px;
+  margin: 1em auto;
+  position: relative;
+  display: block;
+  
+  #folders {
+    position: absolute;
+    width: 200px;
+    
+    button.add-folder {
+      margin-top: 1em;
+    }
+    
+    & > a, & > span {
+      position: relative;
+      display: block;
+      vertical-align: middle;
+      padding: .5em .75em;
+      border-radius: .4em;
+      font-size: 14px;
+      border: 1px solid transparent;
+      margin: 0 0 .5em 0;
+      
+      &.dragover {
+        border: 1px dashed #FF851B;
+        color: #FF851B;
+      }
+      
+      &.on {
+        background: #f9f9f9;
+        position: relative;
+        
+        &:after {
+          background: #fff;
+          border-left: 1px solid #ddd;
+          border-right: 1px solid #ddd;
+        }
+        
+        & > span {
+          visibility: hidden;
+        }
+        
+        &.dflt > span {
+          visibility: visible;
+          font-weight: bold;
+        }
+        
+        input {
+          left: 0;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          position: absolute;
+          background: transparent;
+          border: none;
+          outline: none;
+          padding: .5em .75em;
+          font-family: "Roboto Mono";
+          font-weight: bold;
+          font-size: 14px;
+        }
+      }
+    }
+    
+    & > a:hover {
+      border-color: #eee;
+      background: #fafafa;
+    }
+  }
+  
+  
+  /* Metrics names */
+  ol.metrics-list {
+    list-style: none;
+    padding: 0 0 0 16px;
+    margin: 0 0 0 200px;
+    text-align: center;
+  
+    li {
+      display: table;
+      width: 100%;
+      margin: 0 .5em;
+      font-size: 12px;
+      font-weight: 100;
+      border-bottom: 1px solid #f7f7f7;
+      padding: 1em 0;
+      
+      &.dragging {
+        a {
+          color: #FF851B !important;
+          text-decoration: none;
+        }
+      }
+      
+      &.on {
+        a {
+          pointer-events: none;
+          text-decoration: none;
+          background: #f7f7f7;
+          color: #000;
+          font-weight: 500;
+        }
+        
+        b {
+          display: none;
+        }
+      }
+      
+      a {
+        color: #0074D9;
+        border: 1px solid transparent;
+        padding: 0;
+        display: table-cell;
+        text-align: left;
+        
+        &:hover {
+          color: #001f3f;
+        }
+      }
+      
+      b {
+        display: table-cell;
+        text-align: right;
+        padding: 0;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  ol.metrics-list {
+    position: absolute;
+    top: 12px;
+    right: 42px;
+    border-bottom: none;
+    padding: 0;
+    z-index: 2;
+    
+    li {
+      text-align: right;
+      display: none;
+      font-size: 12px;
+      margin: 0;
+      padding: 0;
+      
+      a {
+        padding: 4px 0px; 
+      }
+      
+      &.on {
+        display: block;
+        cursor: pointer;
+
+        a {
+          border-bottom: 1px dashed #888;
+          background: none;
+          border-radius: 0;
+          pointer-events: all;
+        }
+      }
+    }
+    
+    &.on {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      box-shadow: 0 0 25px #ccc;
+      overflow: hidden;
+      
+      li {
+        display: block;
+        background: #eee;
+        padding: 8px 12px;
+        
+        a {
+          border-bottom: none;
+        }
+        
+        &.on {
+          cursor: default;
+          
+          a {
+            cursor: default;
+          }
+        } 
+      }
+    }
+  }
+  
+  #nav {
+    text-align: left;
+    padding-left: 52px;
+    height: 26px;
+    
+    #folders {
+      text-align: left;
+      display: inline-block;
+      
+      a {
+        display: none;
+      }
+      
+      .show-folders {
+        position: absolute;
+        right: -32px;
+        top: 0;
+        display: inline-block;
+        padding: 0 0 12px 0;
+        line-height: 12px;
+        border: none;
+        background: none;
+        color: #0074D9;
+        cursor: pointer;
+        font-size: 32px;
+        
+        &:hover {
+          color: #000;
+        }
+      }
+      
+      &.on {
+        position: absolute;
+        z-index: 2;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 0 25px #ccc;
+        overflow: hidden;
+        
+        a {
+          display: block;
+          border-radius: 0;
+          padding-bottom: 8px;
+          margin: 0;
+          
+          &:after {
+            display: none;
+          }
+        }
+        
+        .show-folders {
+          display: none;
+        }
+        
+        .on {
+          display: block;
+          border-radius: 0;
+          border: none;
+          padding-bottom: 8px;
+          margin-left: 0;
+          
+          &:after {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}

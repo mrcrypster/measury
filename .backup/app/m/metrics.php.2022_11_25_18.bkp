@@ -1,0 +1,29 @@
+<?php
+
+$metrics = metrics::find(null, $_REQUEST);
+
+return ['#metrics' => [
+  '#folders' => phpy('/m/folders'),
+  
+  !$metrics ? [
+    'div.help' => [
+      'p' => 'Send HTTP requests to the following url:',
+      'code' => 'https://measury.io/' . user::data()['pk'] . '/<b>[event_name]</b>',
+      ['p' => 'To send metric with a custom value:'],
+      ['code' => 'https://measury.io/' . user::data()['pk'] . '/[event_name]/<b>[value]</b>']
+    ]
+  ] : [],
+  
+  'ol.metrics-list' => array_map(function($m) {
+    return [
+      'li' . ($_REQUEST['m'] == $m ? '.on' : '') => [
+        'a' . ":metric('{$m}')" => [
+          $m,
+          ':data' => ['metric' => $m]
+        ],
+        
+        'b' => v(metrics::val($m))
+      ]
+    ];
+  }, $metrics)
+]];

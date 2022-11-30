@@ -1,0 +1,43 @@
+// New folder
+function new_folder() {
+  phpy('/m/folder');
+}
+
+
+// List folders (used on mobile only)
+function show_folders() {
+  qs("#folders")[0].classList.add('on');
+}
+
+
+
+// Open folder
+function folder(f) {
+  phpy('/m/metrics', {f: f || 0});
+}
+
+
+// Edit folder title (or remove folder)
+sub('folders', function() {
+  setTimeout(function() {
+    on('#folders input[type=text]', 'keydown', function(e) {
+      if ( e.keyCode == 13 ) {
+        this.blur();
+      }
+      else if ( (e.keyCode == 8) && (!this.value) ) {
+        if ( confirm('Do you want to delete this folder?') ) {
+          phpy('/m/folder', {id: this.dataset.id});
+          location = '/m';
+        }
+      }
+      
+      let t = this.parentNode.querySelector('span');
+      let i = this;
+      setTimeout(function() {
+        if ( i.value != '' ) {
+          phpy('/m/folder', {id: i.dataset.id, title: i.value});
+        }
+      }, 10);
+    });
+  }, 100);
+});
